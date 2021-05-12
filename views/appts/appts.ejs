@@ -1,0 +1,108 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="d-flex flex-column">
+        <table class="table tableBackground">
+            <thead>
+              <tr>
+                <th colspan="7">Appointments</th>
+              </tr>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Time</th>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+
+              </tr>
+            </thead>
+            <tbody>
+            <% for(appt of appts) { %> 
+              <tr>
+                  <th scope="row"><%= appts.indexOf(appt) + 1 %> </th>
+                  <td><%= appt.first %> <%= appt.last %></td>
+                  <td><%= appt.apptTime %></td>
+                  <td><%= appt.apptDate %> </td>
+                  <td><%= appt.apptLocation %> </td>
+                  <td>1-<%= appt.phoneNumber[0] %><%= appt.phoneNumber[1] %><%= appt.phoneNumber[2] %>-<%= appt.phoneNumber[3] %><%= appt.phoneNumber[4] %><%= appt.phoneNumber[5] %>-<%= appt.phoneNumber[6] %><%= appt.phoneNumber[7] %><%= appt.phoneNumber[8] %><%= appt.phoneNumber[9] %></td>
+                  <td><%= appt.email   %> </td>
+              </tr>
+            <% } %> 
+            </tbody>
+        </table>
+        <div class="flex column formContainer_all mx-4">
+          <form class="needs-validation flex column" action="/user/<%= currentUser._id %>?_method=PUT" method="POST" novalidate>
+            <div class="d-flex flex-row">
+              <div class="d-flex flex-column">
+                <h2>Available Time:</h2>
+                  <% for(let i = 9; i <= 11; i++) { %> 
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="<%= i %>:00am" name="availableTime" id="<%= i %>:00am">
+                      <label class="form-check-label" for="<%= i %>:00am">
+                        <%= i %>:00am 
+                      </label>
+                    </div>
+                  <% } %>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="12:00pm" name="availableTime" id="12:00pm">
+                      <label class="form-check-label" for="12:00pm">
+                        12:00pm
+                      </label>
+                    </div>
+                  <% for(let i = 1; i <= 5; i++) { %> 
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="<%= i %>:00pm" name="availableTime" id="<%= i %>:00pm">
+                      <label class="form-check-label" for="<%= i %>:00pm">
+                        <%= i %>:00pm 
+                      </label>
+                    </div>
+                  <% } %>
+              </div>
+              <div class="d-flex flex-column ms-5">
+                <h2>Available Days:</h2>
+                <div class="input-group mt-3">
+                  <span class="input-group-text">Max Days In Advance</span>
+                  <select class="form-select" aria-label="Default select example" id="availableDays" name="availableDays" required>
+                    <% if(currentUser.availableDays) { %>
+                      <option value="<%= currentUser.availableDays %>"><%= currentUser.availableDays %></option>
+                      <% let x = [] %> 
+                      <% for(let i = 1; i <= 7; i++) { %> 
+                        <% x.push(i) %>
+                      <% } %>
+                      <% x.splice(x.indexOf(currentUser.availableDays), 1) %>  
+                      <% for(y of x) { %>
+                         <option value="<%= y %>"><%= y %></option>
+                      <% } %> 
+                    <% } else { %> 
+                      <% for(let i = 1; i <= 7; i++) { %> 
+                          <option value="<%= i %>"><%= i %></option>
+                      <% } %> 
+                    <% } %> 
+                  </select>
+                </div>
+                <div class="input-group mt-3">
+                  <span class="input-group-text">Same Day Scheduling</span>
+                  <select class="form-select" aria-label="Default select example" id="sameDay" name="sameDay" required>
+                    <% if(currentUser.sameDay) { %>
+                        <option value="<%= currentUser.sameDay %>"><%= currentUser.sameDay[0].toUpperCase() + currentUser.sameDay.slice(1) %></option>
+                      <% if(currentUser.sameDay === 'yes') { %>
+                        <option value="no">No</option>
+                      <% } else if(currentUser.sameDay === 'no') { %>
+                        <option value="yes">Yes</option>
+                      <% } %> 
+                    <% } else { %>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    <% } %> 
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary submitForm loginButton mt-2">Update Settings</button>
+          </form>
+        </div>
+    </div>
+</body>
+</html>

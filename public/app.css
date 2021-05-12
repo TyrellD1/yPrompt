@@ -1,0 +1,101 @@
+body {
+    background-image: linear-gradient(180deg, rgb(212, 212, 138), rgb(155, 155, 110));
+    background-size: cover;
+}
+
+.postButton {
+    background-image: linear-gradient(180deg, rgb(245, 245, 122), rgb(194, 194, 108));
+    border: solid 1px black;
+
+    color: black;
+}
+
+.postButton:hover {
+    background-image: linear-gradient(180deg, rgb(255, 255, 101), rgb(211, 211, 88));
+    border: solid 1px black;
+
+    color: black;
+}
+
+.loginButton {
+    background-image: linear-gradient(180deg, rgb(245, 245, 122), rgb(194, 194, 108));
+    border: solid 1px black;
+
+    color: black;
+}
+
+.loginButton:hover {
+    background-image: linear-gradient(180deg, rgb(255, 255, 101), rgb(211, 211, 88));
+    border: solid 1px black;
+
+    color: black;
+}
+
+.tableBackground {
+    background-image: linear-gradient(180deg, rgb(212, 212, 138), rgb(143, 143, 110));
+    background-color: rgb(245, 245, 122) !important;
+
+    border-color: black;
+}
+
+.navLogo {
+    height: 5vh;
+}
+
+.submitForm {
+    width: 12vw;
+}
+
+.capital {
+    text-transform: capitalize;
+}
+
+.message {
+    width: 60vw;
+}
+
+.formContainer_all {
+    width: 40vw;
+}
+
+.input {
+    background-color: rgb(225, 235, 134);
+
+    color: rgb(0, 0, 0) !important;
+}
+
+.input, .inputSpan_all {
+    border: solid 1px black;
+}
+
+.input:active {
+    background-color: rgb(225, 235, 134);
+}
+
+.input:focus {
+    background-color: rgb(225, 235, 134);
+
+    border: solid 0 transparent;
+}
+
+.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(39, 39, 39);
+    opacity: 1; /* Firefox */
+}
+  
+.input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: red;
+}
+  
+.input::-ms-input-placeholder { /* Microsoft Edge */
+color: red;
+}
+
+.inputSpan_all {
+    border-right: solid 0 transparent;
+    background-image: linear-gradient(180deg, rgb(245, 245, 122), rgb(194, 194, 108));
+}
+
+.navbar {
+    background-image: linear-gradient(180deg, rgb(245, 245, 122), rgb(194, 194, 108));
+}

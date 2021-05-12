@@ -1,0 +1,57 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <%- include('../partials/flashMessage') %> 
+    <% if(currentUser) { %> 
+    <div class="d-flex flex-column mt-2">
+        <h2 class="mb-0 mx-auto"><%= currentUser.companyName %></h2>
+    </div>
+    <div class="flex column formContainer_all mx-auto">
+        <form class="needs-validation flex column" action="/createAppt" method="POST" novalidate>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all" id="basic-addon1">First Name</span>
+                    <input type="text" class="form-control input" name="first" id="first" placeholder="Bob" aria-label="first" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all" id="basic-addon1">Last Name</span>
+                    <input type="text" class="form-control input" id="last" name="last" placeholder="Dillon (optional)" aria-label="last" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all">Appointment Time</span>
+                    <select class="form-select input" aria-label="Default select example" id="apptTime" name="apptTime" required>
+                        <% for(time of currentUser.availableTime) { %>
+                            <option value="<%= time %>"><%= time %></option> 
+                        <% } %> 
+                    </select>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all">Appointment Date</span>
+                    <select class="form-select input" aria-label="Default select example" id="apptDate" name="apptDate" required>
+                        <% for(day of days) { %> 
+                            <option value="<%= day %> "><%= day %></option>
+                        <% } %> 
+                    </select>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all">Appointment Location</span>
+                    <select class="form-select input" aria-label="Default select example" id="apptLocation" name="apptLocation" required>
+                        <option value="Primary">Primary</option>
+                    </select>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text inputSpan_all" id="basic-addon1">+1</span>
+                    <input type="number" class="form-control input" maxlength="9" name="phoneNumber" id="phoneNumber" placeholder="123456789 (optional)" aria-label="phoneNumber" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mt-3">
+                    <input type="email" class="form-control input" name="email" id="email" placeholder="Bob@email.com" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                    <span class="input-group-text inputSpan_all" id="basic-addon2">@example.com</span>
+                </div>
+                <button class="btn btn-primary mt-3 postButton">Create Appointment</button>
+                <% if(!currentUser) { %> 
+                    <a class="btn btn-warning mt-3 ms-2 loginButton" href="/login">Login</a> 
+                <% } %> 
+        </form>
+    </div>
+    <% } %> 
+<%- include('../partials/validator') %> 
+</body>
